@@ -1,6 +1,5 @@
 // =====================================================
 // SAMPOLO URBAN BEAUTY SALON — script.js
-// Gère uniquement le formulaire de la page contact.html
 // =====================================================
 
 const formulaire = document.getElementById("formulaireRdv");
@@ -13,9 +12,7 @@ if (champDate) {
 }
 
 if (formulaire) {
-
     formulaire.addEventListener("submit", function (event) {
-
         // Empêcher le rechargement de la page
         event.preventDefault();
 
@@ -36,22 +33,23 @@ if (formulaire) {
             service: service,
             date: date,
             heure: heure,
-            message: message
+            message: message,
+            dateEnregistrement: new Date().toLocaleString("fr-FR")
         };
 
-        // Sauvegarder localement (visible sur la page admin.html)
+        // Sauvegarder dans localStorage
         let rendezVousList = JSON.parse(localStorage.getItem("rendezVous")) || [];
         rendezVousList.push(rendezVous);
         localStorage.setItem("rendezVous", JSON.stringify(rendezVousList));
 
-        // Afficher un message de confirmation dans la page
+        // Afficher un message de confirmation
         const messageConfirmation = document.getElementById("messageConfirmation");
         if (messageConfirmation) {
             messageConfirmation.classList.add("visible");
             messageConfirmation.scrollIntoView({ behavior: "smooth", block: "center" });
         }
 
-        // Construire un message WhatsApp pré-rempli pour prévenir le salon en temps réel
+        // Message WhatsApp pré-rempli
         const texteWhatsApp =
             `Bonjour SAMPOLO, je souhaite prendre rendez-vous.%0A` +
             `Nom : ${nom}%0A` +
@@ -61,9 +59,10 @@ if (formulaire) {
             `Heure : ${heure}` +
             (message ? `%0AMessage : ${message}` : "");
 
-        const lienWhatsApp = `https://wa.me/25766005253text=${texteWhatsApp}`;
+        // CORRECTION : le ? est obligatoire
+        const lienWhatsApp = `https://wa.me/25766005253?text=${texteWhatsApp}`;
 
-        // Ouvrir WhatsApp dans un nouvel onglet après un court délai
+        // Ouvrir WhatsApp
         setTimeout(function () {
             window.open(lienWhatsApp, "_blank");
         }, 600);

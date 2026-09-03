@@ -1,74 +1,70 @@
 // =====================================================
 // SAMPOLO URBAN BEAUTY SALON — admin.js
-// Tableau de bord : lit les rendez-vous stockés dans localStorage
 // =====================================================
 
-function chargerRendezVous() {
-
-    let rendezVous = JSON.parse(localStorage.getItem("rendezVous")) || [];
-
-    // Trier du rendez-vous le plus proche au plus lointain
-    rendezVous.sort(function (a, b) {
-        return (a.date + " " + a.heure).localeCompare(b.date + " " + b.heure);
-    });
-
+function afficherRendezVous() {
     const liste = document.getElementById("listeRendezVous");
     const compteur = document.getElementById("nombreRendezVous");
 
-    // Corrige le compteur qui restait bloqué à 0
-    compteur.textContent = rendezVous.length;
+    let rendezVousList = JSON.parse(localStorage.getItem("rendezVous")) || [];
 
-    liste.innerHTML = "";
+    // Mettre à jour le nombre
+    if (compteur) {
+        compteur.textContent = rendezVousList.length;
+    }
 
-    if (rendezVous.length === 0) {
-        liste.innerHTML = "<p>📭 Aucun rendez-vous enregistré.</p>";
+    // Si aucun rendez-vous
+    if (rendezVousList.length === 0) {
+        liste.innerHTML = `<p>📭 Aucun rendez-vous enregistré.</p>`;
         return;
     }
 
-    rendezVous.forEach(function (rdv, index) {
+    // Afficher la liste
+    liste.innerHTML = "";
 
+    rendezVousList.forEach((rdv, index) => {
         const carte = document.createElement("div");
-        carte.className = "carte rdv";
+        carte.className = "carte";
+        carte.style.marginBottom = "20px";
 
         carte.innerHTML = `
             <h3>👤 ${rdv.nom}</h3>
-            <p>📞 Téléphone : ${rdv.telephone}</p>
-            <p>📧 Email : ${rdv.email || "—"}</p>
-            <p>💅 Service : ${rdv.service}</p>
-            <p>📅 Date : ${rdv.date}</p>
-            <p>⏰ Heure : ${rdv.heure}</p>
-            ${rdv.message ? `<p>📝 Message : ${rdv.message}</p>` : ""}
-            <button data-index="${index}" class="btnSupprimer">🗑️ Supprimer</button>
+            <p><strong>Téléphone :</strong> ${rdv.telephone}</p>
+            <p><strong>Email :</strong> ${rdv.email || "Non renseigné"}</p>
+            <p><strong>Service :</strong> ${rdv.service}</p>
+            <p><strong>Date :</strong> ${rdv.date}</p>
+            <p><strong>Heure :</strong> ${rdv.heure}</p>
+            <p><strong>Message :</strong> ${rdv.message || "Aucun"}</p>
+            <p style="font-size: 0.85em; color: #888;">
+                Enregistré le : ${rdv.dateEnregistrement || "—"}
+            </p>
+            <button class="bouton" onclick="supprimerRendezVous(${index})" style="margin-top: 10px; background: #e74c3c;">
+                🗑️ Supprimer
+            </button>
         `;
 
         liste.appendChild(carte);
     });
+}
 
-    // Un seul écouteur sur les boutons "Supprimer" (plus fiable qu'un onclick inline)
-    liste.querySelectorAll(".btnSupprimer").forEach(function (bouton) {
-        bouton.addEventListener("click", function () {
-            supprimer(Number(bouton.dataset.index));
-        });
+// Supprimer un seul rendez-vous
+function supprimerRendezVous(index) {
+    let rendezVousList = JSON.parse(localStorage.getItem("rendezVous")) || [];
+    rendezVousList.splice(index, 1);
+    localStorage.setItem("rendezVous", JSON.stringify(rendezVousList));
+    afficherRendezVous();
+}
+
+// Tout effacer
+const btnEffacer = document.getElementById("btnEffacerTout");
+if (btnEffacer) {
+    btnEffacer.addEventListener("click", function () {
+        if (confirm("Voulez-vous vraiment tout effacer ?")) {
+            localStorage.removeItem("rendezVous");
+            afficherRendezVous();
+        }
     });
 }
 
-function supprimer(index) {
-    let rendezVous = JSON.parse(localStorage.getItem("rendezVous")) || [];
-
-    rendezVous.sort(function (a, b) {
-        return (a.date + " " + a.heure).localeCompare(b.date + " " + b.heure);
-    });
-
-    rendezVous.splice(index, 1);
-    localStorage.setItem("rendezVous", JSON.stringify(rendezVous));
-    chargerRendezVous();
-}
-
-document.getElementById("btnEffacerTout").addEventListener("click", function () {
-    if (confirm("Effacer tous les rendez-vous enregistrés ?")) {
-        localStorage.removeItem("rendezVous");
-        chargerRendezVous();
-    }
-});
-
-chargerRendezVous();
+// Afficher dès que la page charge
+afficherRendezVous();
