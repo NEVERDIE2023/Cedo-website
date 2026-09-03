@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Administration —cedo</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="admin.js" defer></script>
+</head>
+
+<body>
+
+    <!-- EN-TÊTE -->
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="logo">SAMPOLO <span>URBAN BEAUTY SALON</span></a>
+
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-btn">☰</label>
+
+            <!-- Ce lien Admin n'est volontairement pas dans le menu des autres pages :
+                 on y accède directement via admin.html dans la barre d'adresse. -->
+            <nav>
+                <a href="index.html">Accueil</a>
+                <a href="services.html">Services</a>
+                <a href="prix.html">Prix</a>
+                <a href="galerie.html">Galerie</a>
+                <a href="contact.html">Contact</a>
+                <a href="admin.html" class="active">Admin</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- TABLEAU DE BORD -->
+    <section>
+
+        <h2> Tableau de bord</h2>
+
+        <p>
+            Voici les rendez-vous enregistrés par les clients.
+        </p>
+
+
+        <!-- NOMBRE DE RENDEZ-VOUS -->
+        <div class="carte">
+
+            <h3>📅 Rendez-vous</h3>
+
+            <p id="nombreRendezVous">
+                0
+            </p>
+
+        </div>
+
+        <div class="admin-actions">
+            <button id="btnEffacerTout" class="bouton">🗑️ Tout effacer</button>
+        </div>
+
+
+        <!-- LISTE DES RENDEZ-VOUS -->
+        <h2>👥 Liste des clients</h2>
+
+        <div id="listeRendezVous" class="services">
+
+            <p>
+                📭 Aucun rendez-vous enregistré.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>SAMPOLO URBAN BEAUTY SALON — © 2026 Iwabo w'ubwiza bugezweho</p>
+    </footer>
+
+</body>
+
+</html>

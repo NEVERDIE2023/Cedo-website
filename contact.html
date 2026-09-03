@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contactez SAMPOLO Urban Beauty Salon à Bujumbura et prenez rendez-vous en ligne ou sur WhatsApp.">
+
+    <title>Contact — cedo_website</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- MENU -->
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="logo">SAMPOLO <span>URBAN BEAUTY SALON</span></a>
+
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-btn">☰</label>
+
+            <nav>
+                <a href="index.html">Accueil</a>
+                <a href="services.html">Services</a>
+                <a href="prix.html">Prix</a>
+                <a href="galerie.html">Galerie</a>
+                <a href="contact.html" class="active">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- CONTACT -->
+    <section>
+
+        <h2>📞 Contactez-nous</h2>
+
+        <p>
+            Nous sommes à votre disposition pour répondre
+            à vos questions et prendre vos rendez-vous.
+        </p>
+
+        <!-- INFORMATIONS -->
+        <div class="contact-info">
+
+            <h3>📍 Adresse</h3>
+            <p>Bujumbura, Burundi</p>
+
+            <h3>📞 Téléphone</h3>
+            <p><a href="tel:+257 66005253">+25766005253</a></p>
+
+            <h3>📱 WhatsApp</h3>
+            <p><a href="https://wa.me/25766005253" target="_blank" rel="noopener">+257 66005253</a></p>
+
+            <h3>📧 Email</h3>
+            <p><a href="mailto:Bikorimanacedric17@gmail.com">Bikorimanacedric17@gmail.com</a></p>
+
+        </div>
+
+
+        
+        <h2>📅 Prendre rendez-vous</h2>
+
+        <p>
+            Le formulaire enregistre votre demande et l'envoie
+            directement sur notre WhatsApp pour une réponse rapide.
+        </p>
+
+        <form id="formulaireRdv">
+
+            <label for="nom">Votre nom</label>
+            <input
+                type="text"
+                id="nom"
+                name="nom"
+                placeholder="Votre nom"
+                required
+            >
+
+            <label for="telephone">Votre numéro de téléphone</label>
+            <input
+                type="tel"
+                id="telephone"
+                name="telephone"
+                placeholder="Votre numéro de téléphone"
+                required
+            >
+
+            <label for="email">Votre email (optionnel)</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Votre email"
+            >
+
+            <label for="service">Service souhaité</label>
+            <select id="service" name="service" required>
+                <option value="">Choisir un service</option>
+                <option>Manucure</option>
+                <option>Pédicure</option>
+                <option>Maquillage</option>
+                <option>Coiffure</option>
+                <option>Soin du visage</option>
+            </select>
+
+            <label for="date">Date souhaitée</label>
+            <input
+                type="date"
+                id="date"
+                name="date"
+                required
+            >
+
+            <label for="heure">Heure souhaitée</label>
+            <input
+                type="time"
+                id="heure"
+                name="heure"
+                required
+            >
+
+            <label for="message">Votre message</label>
+            <textarea
+                id="message"
+                name="message"
+                placeholder="Votre message (optionnel)"
+                rows="5"
+            ></textarea>
+
+            <button type="submit">
+                Envoyer la demande
+            </button>
+
+        </form>
+
+        <div id="messageConfirmation" class="message-confirmation">
+            ✅ Votre rendez-vous a été enregistré ! Une fenêtre WhatsApp va s'ouvrir pour confirmer votre demande.
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>SAMPOLO URBAN BEAUTY SALON — © 2026 Tous droits réservés.</p>
+    </footer>
+
+    <a href="https://wa.me/25766005253" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp">💬</a>
+
+</body>
+
+</html>
