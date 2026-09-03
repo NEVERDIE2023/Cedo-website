@@ -8,18 +8,15 @@ function afficherRendezVous() {
 
     let rendezVousList = JSON.parse(localStorage.getItem("rendezVous")) || [];
 
-    // Mettre à jour le nombre
     if (compteur) {
         compteur.textContent = rendezVousList.length;
     }
 
-    // Si aucun rendez-vous
     if (rendezVousList.length === 0) {
         liste.innerHTML = `<p>📭 Aucun rendez-vous enregistré.</p>`;
         return;
     }
 
-    // Afficher la liste
     liste.innerHTML = "";
 
     rendezVousList.forEach((rdv, index) => {
@@ -47,7 +44,6 @@ function afficherRendezVous() {
     });
 }
 
-// Supprimer un seul rendez-vous
 function supprimerRendezVous(index) {
     let rendezVousList = JSON.parse(localStorage.getItem("rendezVous")) || [];
     rendezVousList.splice(index, 1);
@@ -55,7 +51,6 @@ function supprimerRendezVous(index) {
     afficherRendezVous();
 }
 
-// Tout effacer
 const btnEffacer = document.getElementById("btnEffacerTout");
 if (btnEffacer) {
     btnEffacer.addEventListener("click", function () {
@@ -66,5 +61,5 @@ if (btnEffacer) {
     });
 }
 
-// Afficher dès que la page charge
+// Affiche les rendez-vous dès le chargement
 afficherRendezVous();
